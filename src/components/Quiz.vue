@@ -1,4 +1,5 @@
 <template>
+
     <section class="quiz">
         <div class="header">
             <h1>PHP Quiz</h1>
@@ -97,6 +98,16 @@ const questions = ref([
 ]) 
 const quizCompleted = ref(false)
 const currentQuestion = ref(0)
+
+const random = computed((questions)=>{
+    for(var i = questions.length-1 ; i>0; i--){
+        var j = Math.floor(Math.random()*(i+1));
+        var temp = questions[i];
+        questions[i] = questions[j];
+        questions[j] = temp;    
+    }
+    return questions;
+})
 
 const score = computed(()=>{
     let value = 0;
